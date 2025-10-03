@@ -7,44 +7,61 @@ const Projects = () => {
     {
       title: "Mood Mend",
       description: "Proyecto grupal enfocado en bienestar emocional — diseño de interfaz y soporte en documentación y pruebas.",
-      image: moodmendImg
+      image: moodmendImg,
+      year: "2024"
     },
     {
       title: "Chance",
       description: "App educativa para mejorar pronunciación en inglés — Cofundador, participé en diseño y guionización de lecciones, marketing y videos.",
-      image: chanceImg
+      image: chanceImg,
+      year: "2024"
     },
     {
       title: "Find Your Pet",
       description: "Plataforma para conectar mascotas perdidas con dueños — Cofundador, colaboración en investigación, pruebas y presentaciones.",
-      image: findyourpetImg
+      image: findyourpetImg,
+      year: "2024"
     }
   ];
 
   return (
-    <section id="proyectos" className="glass-card rounded-xl p-6 md:p-8">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Proyectos destacados</h2>
-      <div className="space-y-6">
-        {projects.map((project) => (
-          <div 
-            key={project.title} 
-            className="flex gap-4 items-start hover:bg-secondary/20 p-4 rounded-lg transition-all duration-300 group"
-          >
-            <div className="flex-shrink-0 w-24 h-18 md:w-28 md:h-20 rounded-lg overflow-hidden border border-primary/20 group-hover:border-primary/50 transition-colors">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
+    <section id="proyectos" className="py-20 md:py-32 bg-card/30">
+      <div className="container mx-auto px-6">
+        <h2 className="font-display text-5xl md:text-7xl mb-16 tracking-wide">
+          PROYECTOS
+        </h2>
+        
+        <div className="space-y-12">
+          {projects.map((project, index) => (
+            <div 
+              key={project.title}
+              className="group grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+            >
+              <div className={`md:col-span-7 ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                <div className="relative aspect-video rounded-xl overflow-hidden border border-border/30 bg-card">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+              </div>
+              
+              <div className={`md:col-span-5 space-y-4 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                <div className="text-sm text-muted-foreground font-mono">{`0${index + 1}`}</div>
+                <h3 className="font-display text-4xl md:text-5xl tracking-wide">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.description}
+                </p>
+                <div className="pt-4">
+                  <span className="text-sm text-muted-foreground">{project.year}</span>
+                </div>
+              </div>
             </div>
-            <div className="flex-1">
-              <h3 className="text-lg md:text-xl font-bold mb-2">{project.title}</h3>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                {project.description}
-              </p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
